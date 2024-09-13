@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function CarouselImage({ src }) {
   return (
     <div className="mx-5">
-      <img src={src} className="w-full" />
+      <img src={src} className="w-full rounded-xl" />
     </div>
   );
 }
@@ -42,10 +42,10 @@ function App() {
         <img src="wave.svg" className="absolute top-[-60px]" />
         <div className="z-20 container mx-auto flex flex-grow p-10">
           <div className="flex w-full flex-col lg:flex-row lg:justify-between items-center">
-            <div className="w-[92%] mx-auto lg:max-w-[50%] mr-6">
+            <div className="w-[92%] mx-auto mt-10 lg:max-w-[50%] mr-6 space-y-3">
               <div className="flex items-center">
                 <img src="logo.svg" className="w-[3rem] h-auto" />
-                <h1 className="text-4xl font-medium">AniList</h1>
+                <h1 className="text-4xl font-medium mx-3">AniList</h1>
               </div>
               <Text>
                 Your ultimate companion for tracking and discovering anime and
@@ -75,7 +75,7 @@ function App() {
 
                 <div>
                   <a
-                    href="https://github.com/your-username/your-repo"
+                    href="https://github.com/AniLibApp/AniLib"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -100,7 +100,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:max-w-[50%]  my-4 lg:my-0 ">
+            <div className="w-full lg:max-w-[60%]  my-4 lg:my-0 ">
               <Slider {...carouselSettings}>
                 <CarouselImage src="search.jpg" />
                 <CarouselImage src="track.jpg" />
@@ -128,7 +128,7 @@ function App() {
       <div className="p-10 space-x-5">
         <Link to="/privacy-policy">🔒 Privacy Policy</Link>
         <Link to="/terms-and-conditions">📋 Terms & Conditions</Link>
-        <a href="https://anilist.co/terms">🔒 AniList Privacy Policy</a>
+        <a href="https://anilist.co/terms">🔐 AniList Privacy Policy</a>
       </div>
     </div>
   );

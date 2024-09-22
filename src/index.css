@@ -3,6 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-3xl font-bold; /* Add your desired Tailwind classes */
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold; /* Add your desired Tailwind classes */
+  }
+  
+  h3 {
+    @apply text-xl font-medium; /* Add your desired Tailwind classes */
+  }
+
+  /* Add styles for other headers as needed */
+}
 
 body {
   margin: 0;

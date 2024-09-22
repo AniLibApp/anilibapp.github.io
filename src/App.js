@@ -1,15 +1,15 @@
-import "./App.css";
-import React from "react";
-import Wave from "react-wavify";
-import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import './App.css'
+import React from 'react'
+import Wave from 'react-wavify'
+import Slider from 'react-slick'
+import { Link } from 'react-router-dom'
 
 function CarouselImage({ src }) {
   return (
     <div className="mx-5">
       <img src={src} className="w-full rounded-xl" />
     </div>
-  );
+  )
 }
 
 const carouselSettings = {
@@ -20,6 +20,7 @@ const carouselSettings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 8000,
+  arrows: false,
   responsive: [
     {
       breakpoint: 480,
@@ -29,78 +30,73 @@ const carouselSettings = {
       },
     },
   ],
-};
-
-function Text({ children }) {
-  return <p className="text-base text-stone-600">{children}</p>;
 }
 
 function App() {
   return (
     <div>
-      <div className="flex flex-col justify-between min-h-screen relative">
+      <div className="relative flex min-h-screen flex-col justify-between">
         <img src="wave.svg" className="absolute top-[-60px]" />
-        <div className="z-20 container mx-auto flex flex-grow p-10">
-          <div className="flex w-full flex-col lg:flex-row lg:justify-between items-center">
-            <div className="w-[92%] mx-auto mt-10 lg:max-w-[50%] mr-6 space-y-3">
-              <div className="flex items-center">
-                <img src="logo.svg" className="w-[3rem] h-auto" />
-                <h1 className="text-4xl font-medium mx-3">AniList</h1>
+        <div className="container z-20 mx-auto flex flex-grow p-10">
+          <div className="flex w-full flex-col items-center lg:flex-row lg:justify-between">
+            <div className="mx-auto mr-6  flex w-[92%] flex-col items-center justify-center space-y-3 lg:max-w-[50%]">
+              <img src="logo.svg" width={100} />
+              <h1>AniList App</h1>
+              <h3>
+                An Unofficial Client for{' '}
+                <a href="https://anilist.co" target="_blank" rel="noopener noreferrer">
+                  AniList
+                </a>
+              </h3>
+              <p className="text-center text-base text-stone-600">
+                Track your anime and manga progress, discover new titles, customize your lists, and much more—all in one
+                app!
+              </p>
+
+              <div>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.revolgenx.anilib&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Play Store"
+                    rel="noopener noreferrer"
+                    className="inline"
+                    width={175}
+                  />
+                </a>
+                <a href="https://github.com/AniLibApp/AniLib" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="./github-badge.png"
+                    alt="Source code on github"
+                    rel="noopener noreferrer"
+                    width={200}
+                    className="inline"
+                  />
+                </a>
               </div>
-              <Text>
-                Your ultimate companion for tracking and discovering anime and
-                manga
-              </Text>
 
-              {/* <h2>Features</h2>
-            <FeatureItem>Track Your Anime & Manga</FeatureItem>
-            <FeatureItem>Discover New Titles</FeatureItem>
-            <FeatureItem>Stay Updated</FeatureItem>
-            <FeatureItem>Connect with Friends</FeatureItem> */}
+              <h2>Features</h2>
 
-              <div className="space-y-2">
-                <div>
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.revolgenx.anilib&hl=en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                      alt="Play Store"
-                      rel="noopener noreferrer"
-                    />
-                  </a>
-                </div>
-
-                <div>
-                  <a
-                    href="https://github.com/AniLibApp/AniLib"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="bg-[#1b1e23] px-3 py-1 rounded-md inline-flex items-center space-x-2">
-                      <img
-                        src="./github-logo.png"
-                        width="32px"
-                        className="inline"
-                      />
-                      <span>
-                        <p className="text-white text-sm pl-1">
-                          Source code on
-                        </p>
-                        <img
-                          src="./github-text.png"
-                          width="60px"
-                          className="inline"
-                        />
-                      </span>
-                    </span>
-                  </a>
-                </div>
+              <div>
+                <ul class="list-disc pl-5 text-gray-700">
+                  <li>Search for anime and manga</li>
+                  <li>Track your anime and manga progress</li>
+                  <li>Get detailed info on characters, episodes, and studios</li>
+                  <li>Use advanced filters to quickly find your preferred titles</li>
+                  <li>Discover recommendations based on the media you're viewing</li>
+                  <li>Create custom lists with your own rating systems</li>
+                  <li>Share lists and reviews with friends</li>
+                  <li>Discover various stats based on your media preferences</li>
+                  <li>Enjoy theme customization</li>
+                  <li>Get notified about new episodes</li>
+                  <li>and much more...</li>
+                </ul>
               </div>
             </div>
-            <div className="w-full lg:max-w-[60%]  my-4 lg:my-0 ">
+            <div className="my-4 w-full  lg:my-0 lg:max-w-[50%] ">
               <Slider {...carouselSettings}>
                 <CarouselImage src="search.jpg" />
                 <CarouselImage src="track.jpg" />
@@ -116,8 +112,8 @@ function App() {
             fill="#0099ff"
             paused={false}
             options={{
-              height: 60,
-              amplitude: 30,
+              height: 40,
+              amplitude: 20,
               speed: 0.15,
               points: 4,
             }}
@@ -125,13 +121,13 @@ function App() {
         </div>
       </div>
 
-      <div className="p-10 space-x-5">
+      <div className="space-x-5 p-10">
         <Link to="/privacy-policy">🔒 Privacy Policy</Link>
         <Link to="/terms-and-conditions">📋 Terms & Conditions</Link>
         <a href="https://anilist.co/terms">🔐 AniList Privacy Policy</a>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

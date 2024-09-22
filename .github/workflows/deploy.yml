@@ -17,3 +17,5 @@ jobs:
           node-version: '20.x'
       - run: npm ci
       - run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

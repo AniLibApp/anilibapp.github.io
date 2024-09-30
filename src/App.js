@@ -42,7 +42,7 @@ function App() {
             <div className="mx-auto mr-6  flex w-[92%] flex-col items-center justify-center space-y-3 lg:max-w-[50%]">
               <img src="logo.svg" width={100} />
               <h1>AniList App</h1>
-              <h3>
+              <h3 className="text-center">
                 An Unofficial Client for{' '}
                 <a href="https://anilist.co" target="_blank" rel="noopener noreferrer">
                   AniList
@@ -53,7 +53,7 @@ function App() {
                 app!
               </p>
 
-              <div>
+              <div className="flex flex-col items-center sm:flex-row ">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.revolgenx.anilib&hl=en"
                   target="_blank"
@@ -98,10 +98,11 @@ function App() {
             </div>
             <div className="my-4 w-full  lg:my-0 lg:max-w-[50%] ">
               <Slider {...carouselSettings}>
-                <CarouselImage src="search.jpg" />
+                <CarouselImage src="explore.jpg" />
                 <CarouselImage src="track.jpg" />
+                <CarouselImage src="season.jpg" />
+                <CarouselImage src="overview.jpg" />
                 <CarouselImage src="search.jpg" />
-                <CarouselImage src="track.jpg" />
               </Slider>
             </div>
           </div>
@@ -125,6 +126,7 @@ function App() {
         <Link to="/privacy-policy">🔒 Privacy Policy</Link>
         <Link to="/terms-and-conditions">📋 Terms & Conditions</Link>
         <a href="https://anilist.co/terms">🔐 AniList Privacy Policy</a>
+        <a href="mailto:anilib.dev@gmail.com">📧 anilib.dev@gmail.com</a>
       </div>
     </div>
   )

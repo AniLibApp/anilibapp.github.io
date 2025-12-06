@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="description"
+        content="Track your anime and manga progress, discover new titles, customize your lists, and much more—all in one app!" />
+    <title>AniLib</title>
+    <link rel="icon" href="public/favicon.ico" />
+    <link rel="apple-touch-icon" href="public/logo.png" />
+    <link rel="manifest" href="public/manifest.json" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <div id="root">
+        <!-- Home View -->
+        <div id="home-view" class="view">
+            <div class="relative flex min-h-screen flex-col justify-between">
+                <img src="public/wave.svg" class="absolute" style="top: -60px; left: 0; width: 100%;" />
+
+                <div class="container mx-auto flex flex-grow p-10" style="position: relative; z-index: 10;">
+                    <div class="flex w-full flex-col items-center lg:flex-row lg:justify-between">
+
+                        <!-- Left Content -->
+                        <div
+                            class="mx-auto mr-6 flex w-full flex-col items-center justify-center space-y-3 lg:max-w-[50%]">
+                            <img src="public/logo.svg" width="100" />
+                            <h1>AniList App</h1>
+                            <h3 class="text-center">
+                                An Unofficial Client for
+                                <a href="https://anilist.co" target="_blank" rel="noopener noreferrer"
+                                    style="color: #0099ff;">
+                                    AniList
+                                </a>
+                            </h3>
+                            <p class="text-center text-base text-stone-600">
+                                Track your anime and manga progress, discover new titles, customize your lists, and much
+                                more—all in one app!
+                            </p>
+
+                            <div class="flex flex-col items-center sm:flex-row" style="gap: 1rem;">
+                                <a href="https://play.google.com/store/apps/details?id=com.revolgenx.anilib&hl=en"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                        alt="Play Store" width="175" class="inline" />
+                                </a>
+                                <a href="https://github.com/AniLibApp/AniLib" target="_blank" rel="noopener noreferrer">
+                                    <img src="public/github-badge.png" alt="Source code on github" width="200"
+                                        class="inline" />
+                                </a>
+                            </div>
+
+                            <h2>Features</h2>
+
+                            <div>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>Search for anime and manga</li>
+                                    <li>Track your anime and manga progress</li>
+                                    <li>Get detailed info on characters, episodes, and studios</li>
+                                    <li>Use advanced filters to quickly find your preferred titles</li>
+                                    <li>Discover recommendations based on the media you're viewing</li>
+                                    <li>Create custom lists with your own rating systems</li>
+                                    <li>Share lists and reviews with friends</li>
+                                    <li>Discover various stats based on your media preferences</li>
+                                    <li>Enjoy theme customization</li>
+                                    <li>Get notified about new episodes</li>
+                                    <li>and much more...</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Content (Slider) -->
+                        <div class="my-4 w-full lg:my-0 lg:max-w-[50%]">
+                            <div class="slider-container" id="screenshot-slider">
+                                <div class="slide-item"><img src="public/explore.jpg" /></div>
+                                <div class="slide-item"><img src="public/track.jpg" /></div>
+                                <div class="slide-item"><img src="public/season.jpg" /></div>
+                                <div class="slide-item"><img src="public/overview.jpg" /></div>
+                                <div class="slide-item"><img src="public/search.jpg" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Links -->
+                <div class="footer-links">
+                    <a href="#/privacy-policy">🔒 Privacy Policy</a>
+                    <a href="#/terms-and-conditions">📋 Terms & Conditions</a>
+                    <a href="https://anilist.co/terms">🔐 AniList Privacy Policy</a>
+                    <a href="mailto:anilib.dev@gmail.com">📧 anilib.dev@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy View (Dynamic) -->
+        <div id="privacy-policy-view" class="view hidden">
+            <!-- Content will be injected here -->
+            <div class="container view-content p-10 text-center">
+                <p>Loading Privacy Policy...</p>
+            </div>
+        </div>
+
+        <!-- Terms View (Dynamic) -->
+        <div id="terms-and-conditions-view" class="view hidden">
+            <!-- Content will be injected here -->
+            <div class="container view-content p-10 text-center">
+                <p>Loading Terms & Conditions...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Router Script -->
+    <script>
+        // Cache for loaded content
+        const contentCache = {
+            'privacy-policy': false,
+            'terms-and-conditions': false
+        };
+
+        async function loadContent(pageName) {
+            if (contentCache[pageName]) return; // Already loaded
+
+            try {
+                const response = await fetch(`${pageName}.html`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const htmlText = await response.text();
+
+                // Parse the fetched HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+
+                // Extract the content div (.view-content)
+                const content = doc.querySelector('.view-content');
+                if (content) {
+                    // Update internal "Back to Home" links to use hash
+                    const backLinks = content.querySelectorAll('a[href="index.html"]');
+                    backLinks.forEach(link => link.setAttribute('href', '#/'));
+
+                    // Inject into the correct view container
+                    const container = document.getElementById(`${pageName}-view`);
+                    container.innerHTML = ''; // Clear loading placeholder
+                    container.appendChild(content);
+
+                    contentCache[pageName] = true;
+                } else {
+                    console.error('Could not find .view-content in fetched file');
+                }
+            } catch (err) {
+                console.error('Failed to load content:', err);
+                const container = document.getElementById(`${pageName}-view`);
+                container.innerHTML = `<div class="container view-content p-5 text-center text-red-500">Failed to load content. Please refresh or check connection.</div>`;
+            }
+        }
+
+        async function render() {
+            const hash = window.location.hash;
+
+            // Default to home
+            let route = hash.replace('#/', '').replace('#', '');
+            if (!route) route = 'home';
+
+            // Handle Dynamic Loading
+            if (route === 'privacy-policy' || route === 'terms-and-conditions') {
+                await loadContent(route);
+            }
+
+            // Hide all views
+            document.querySelectorAll('.view').forEach(el => el.classList.add('hidden'));
+
+            // Show matched view
+            if (route === 'home') {
+                document.getElementById('home-view').classList.remove('hidden');
+                startSliderAutoScroll();
+            } else if (route === 'privacy-policy') {
+                document.getElementById('privacy-policy-view').classList.remove('hidden');
+            } else if (route === 'terms-and-conditions') {
+                document.getElementById('terms-and-conditions-view').classList.remove('hidden');
+            } else {
+                // 404 fallback to home
+                document.getElementById('home-view').classList.remove('hidden');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('hashchange', render);
+        window.addEventListener('load', render);
+
+        // Simple Auto Scroll for Slider
+        let sliderInterval;
+        function startSliderAutoScroll() {
+            if (sliderInterval) clearInterval(sliderInterval);
+
+            const slider = document.getElementById('screenshot-slider');
+            if (!slider) return;
+
+            // Optional: Only auto-scroll if user hasn't interacted? 
+            // For now, simple auto-scroll mechanism
+            sliderInterval = setInterval(() => {
+                const scrollLeft = slider.scrollLeft;
+                const scrollWidth = slider.scrollWidth;
+                const clientWidth = slider.clientWidth;
+
+                // If at end, scroll back to start
+                if (Math.ceil(scrollLeft + clientWidth) >= scrollWidth) {
+                    slider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    // Scroll by one item width (approx)
+                    slider.scrollBy({ left: clientWidth / 2, behavior: 'smooth' });
+                }
+            }, 4000);
+        }
+    </script>
+</body>
+
+</html>

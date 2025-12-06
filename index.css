@@ -1,0 +1,436 @@
+/* Base & Reset */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+:root {
+    /* Color Palette - Modern Dark Theme */
+    --bg-primary: #0f172a;
+    /* Slate 900 */
+    --bg-secondary: #1e293b;
+    /* Slate 800 */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    /* Deep Slate to Indigo */
+
+    --text-main: #f8fafc;
+    /* Slate 50 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+    --text-accent: #38bdf8;
+    /* Sky 400 */
+
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    --primary-glow: 0 0 20px rgba(56, 189, 248, 0.5);
+
+    --font-family: "Outfit", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    color: var(--text-main);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover {
+    color: var(--text-accent);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Utilities (mimicking Tailwind needed parts) */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.text-stone-600 {
+    color: var(--text-muted) !important;
+    /* Override original slate color */
+}
+
+.text-gray-700 {
+    color: var(--text-muted) !important;
+    /* Override original gray color */
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mx-5 {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+}
+
+.mr-6 {
+    margin-right: 1.5rem;
+}
+
+.space-y-3>*+* {
+    margin-top: 0.75rem;
+}
+
+.space-x-5>*+* {
+    margin-left: 1.25rem;
+}
+
+.p-5 {
+    padding: 1.25rem;
+}
+
+.p-10 {
+    padding: 2.5rem;
+}
+
+.pl-5 {
+    padding-left: 1.25rem;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.inline {
+    display: inline;
+}
+
+/* List Disc styling update */
+.list-disc {
+    list-style: none;
+    /* Custom bullets */
+    padding-left: 0;
+}
+
+.list-disc li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-disc li::before {
+    content: "•";
+    color: var(--text-accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+
+/* Responsive */
+@media (min-width: 640px) {
+
+    /* sm */
+    .sm\:flex-row {
+        flex-direction: row;
+    }
+
+    .sm\:space-x-4>*+* {
+        margin-left: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    /* lg */
+    .lg\:flex-row {
+        flex-direction: row;
+    }
+
+    .lg\:justify-between {
+        justify-content: space-between;
+    }
+
+    .lg\:max-w-\[50\%\] {
+        max-width: 50%;
+    }
+
+    .lg\:my-0 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+/* Custom Components & Beautification */
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 3rem;
+    /* Larger, more modern title */
+    font-weight: 800;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    color: var(--text-main);
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    color: var(--text-muted);
+}
+
+/* Specific Link overrides */
+a[href="https://anilist.co"] {
+    color: var(--text-accent) !important;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+a[href="https://anilist.co"]:hover {
+    border-bottom: 1px solid var(--text-accent);
+    text-shadow: var(--primary-glow);
+}
+
+/* Slider replacement (simple scroll) */
+.slider-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    /* Increased gap */
+    scroll-snap-type: x mandatory;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    /* Space for shadow */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.slider-container::-webkit-scrollbar {
+    display: none;
+}
+
+.slide-item {
+    min-width: 80%;
+    /* Mobile default */
+    scroll-snap-align: center;
+    transition: transform 0.3s ease;
+}
+
+.slide-item:hover {
+    transform: translateY(-5px);
+}
+
+@media (min-width: 480px) {
+    .slide-item {
+        min-width: 50%;
+    }
+}
+
+.slide-item img {
+    width: 100%;
+    border-radius: 1rem;
+    /* More rounded */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+    border: 1px solid var(--glass-border);
+}
+
+/* Navigation Links Footer */
+.footer-links {
+    padding: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.8);
+    /* Semi-transparent footer bg */
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphism View Content (Privacy/Terms) */
+.view-content {
+    max-width: 800px;
+    margin: 5rem auto;
+    /* Added top margin for spacing from top */
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    color: var(--text-main);
+}
+
+/* Scrollbar beautification */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Legal Content overrides for dark mode */
+.legal-content p {
+    margin-bottom: 1.5em;
+    color: var(--text-muted);
+}
+
+.legal-content strong {
+    color: var(--text-main);
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.legal-content ul {
+    list-style-type: disc;
+    padding-left: 2em;
+    margin-bottom: 1em;
+    color: var(--text-muted);
+}
+
+.legal-content a {
+    color: var(--text-accent) !important;
+}
